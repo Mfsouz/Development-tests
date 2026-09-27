@@ -22,16 +22,9 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         // launch();
+        TaskManager task = new TaskManager();
+        task.test();
+        System.out.println(task.getDoneTask());
 
-        ArrayList<Task> arrayTask = new ArrayList<>();
-
-        Task task1 = new Task("Matematica", "Estudar para o teste");
-        Task task2 = new Task("Historia", "Estudar exame");
-
-        arrayTask.add(task1);
-        arrayTask.add(task2);
-        task1.setEstado(Task.Estado.CONCLUIDA);
-
-        System.out.println(arrayTask);
     }
 }

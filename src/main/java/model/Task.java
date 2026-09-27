@@ -1,7 +1,6 @@
 package model;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Task  {
 
@@ -99,7 +98,8 @@ public class Task  {
          + "\nData Limite: " + this.getDataLimite()
          + "\nPrioridade: " + this.getPrioridade()
          + "\nTipo: " + this.getTipo()
-         + "\n";
+         + "\nEstado " + this.getEstado()
+         + "\n ";
     }
 }
 
