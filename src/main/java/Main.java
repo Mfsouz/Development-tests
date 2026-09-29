@@ -4,7 +4,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import model.Task;
 
-import java.util.ArrayList;
+import java.util.Locale;
 
 public class Main extends Application {
 
@@ -23,8 +23,11 @@ public class Main extends Application {
     public static void main(String[] args) {
         // launch();
         TaskManager task = new TaskManager();
-        task.test();
-        System.out.println(task.getDoneTask());
+        task.carregarDadosTeste();
 
+        task.updateEstado("Estudar Java", Task.Estado.CONCLUIDA);
+
+        System.out.println("\nAqui estão todas as tarefas: " + task.getAllTask());
+        System.out.println("\nAqui estão todas as tarefas CONCLUIDAS: " + task.getDoneTask());
     }
 }
