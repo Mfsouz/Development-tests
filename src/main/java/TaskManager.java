@@ -2,10 +2,11 @@ import model.Task;
 
 import java.text.Normalizer;
 import java.util.ArrayList;
+import java.util.List;
 
 public class TaskManager {
 
-    ArrayList<Task> arrayTask = new ArrayList<>();
+    private List<Task> arrayTask = new ArrayList();
 
     ///Metodos Principais
 
@@ -15,38 +16,38 @@ public class TaskManager {
     }
 
     //Atualiza os ESTADOS das tarefas
-    public void updateEstado(String Titulo, Task.Estado novoEstado){
-        Task taskSearch = searchTask(Titulo);
+    public void updateState(String Title, Task.State newState){
+        Task taskSearch = searchTask(Title);
             if(taskSearch != null){
-                taskSearch.setEstado(novoEstado);
+                taskSearch.setState(newState);
             }else{
-                System.out.println("Nenhuma tarefa com o titulo: " + Titulo);
+                System.out.println("Nenhuma tarefa com o titulo: " + Title);
             }
     }
 
     //Atualiza os TIPOS das tarefas
-    public void updateTipo(String Titulo, Task.Tipo novoTipo){
-        Task taskSearch = searchTask(Titulo);
+    public void updateType(String Title, Task.Type newType){
+        Task taskSearch = searchTask(Title);
         if(taskSearch != null){
-            taskSearch.setTipo(novoTipo);
+            taskSearch.setType(newType);
         }else{
-            System.out.println("\nNenhuma tarefa com o titulo: " + Titulo);
+            System.out.println("\nNenhuma tarefa com o titulo: " + Title);
         }
     }
 
     //Atualiza as PRIORIDADES das tarefas
-    public void updatePrioridade(String Titulo, Task.Prioridade novaPrioridade){
-        Task taskSearch = searchTask(Titulo);
+    public void updatePriority(String Title, Task.Priority newPriority){
+        Task taskSearch = searchTask(Title);
         if(taskSearch != null){
-            taskSearch.setPrioridade(novaPrioridade);
+            taskSearch.setPriority(newPriority);
         }else{
-            System.out.println("\nNenhuma tarefa com o titulo: " + Titulo);
+            System.out.println("\nNenhuma tarefa com o titulo: " + Title);
         }
     }
 
     //Eliminar a tarefas que o utilizador escolher
-    public void deleteTask(String Titulo){
-        arrayTask.removeIf(task -> compareStrings(task.getTitulo(),Titulo));
+    public void deleteTask(String Title){
+        arrayTask.removeIf(task -> compareStrings(task.getTitle(),Title));
     }
 
     //Eliminar TODAS as tarefas
@@ -56,25 +57,25 @@ public class TaskManager {
 
 
     //Vai buscar e listar todas as tarefas sem filtros
-    public ArrayList<Task> getAllTask() {
-        return arrayTask;
+    public List<Task> getAllTasks() {
+        return new ArrayList<>(arrayTask);
     }
 
     //Vai buscar e listar todas as tarefas que estao com o estado "CONCLUIDA"
-    public ArrayList<Task> getDoneTask() {
-        ArrayList<Task> doneTask = new ArrayList<>();
+    public ArrayList<Task> getDoneTasks() {
+        ArrayList<Task> doneTasks = new ArrayList<>();
 
         for (Task task : arrayTask) {
-            if (task.getEstado() == Task.Estado.CONCLUIDA) {
-                doneTask.add(task);
+            if (task.getState() == Task.State.FINISHED) {
+                doneTasks.add(task);
             }
         }
-        return doneTask;
+        return doneTasks;
     }
 
 
     //Dados de teste
-    public void carregarDadosTeste() {
+    public void loadTestData() {
         Task task1 = new Task("Estudar Java", "Estudar classes, métodos e objetos");
         Task task2 = new Task("Fazer trabalho de Matemática", "Resolver os exercícios da ficha");
         Task task3 = new Task("Ler livro", "Ler 30 páginas do livro");
@@ -101,9 +102,9 @@ public class TaskManager {
     }
 
     //Vai procurar uma tarefa por titulo, se encontrar da return da mesma, se nao da return de "nada"
-    private Task searchTask(String Titulo) {
+    private Task searchTask(String Title) {
         for (Task task : arrayTask) {
-            if (compareStrings(task.getTitulo(), Titulo)) {
+            if (compareStrings(task.getTitle(), Title)) {
                 return task;
             }
         }

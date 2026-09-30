@@ -4,8 +4,6 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import model.Task;
 
-import java.util.Locale;
-
 public class Main extends Application {
 
     @Override
@@ -23,11 +21,13 @@ public class Main extends Application {
     public static void main(String[] args) {
         // launch();
         TaskManager task = new TaskManager();
-        task.carregarDadosTeste();
+        task.loadTestData();
 
-        task.updateEstado("Estudar Java", Task.Estado.CONCLUIDA);
+        task.updateState("Estudar Java", Task.State.FINISHED);
 
-        System.out.println("\nAqui estão todas as tarefas: " + task.getAllTask());
-        System.out.println("\nAqui estão todas as tarefas CONCLUIDAS: " + task.getDoneTask());
+        System.out.println("\nAqui estão todas as tarefas: " + task.getAllTasks());
+        System.out.println("\nAqui estão todas as tarefas CONCLUIDAS: " + task.getDoneTasks());
     }
+
+
 }

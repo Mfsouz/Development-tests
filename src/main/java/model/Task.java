@@ -4,101 +4,97 @@ import java.time.LocalDate;
 
 public class Task  {
 
-     private String titulo;
-     private String descricao;
-     private Estado estado;
-     private Tipo tipo;
-     private LocalDate dataCriacao;
-     private LocalDate dataLimite;
-     private Prioridade prioridade;
+     private String title;
+     private String description;
+     private State state;
+     private Type type;
+     final private LocalDate creationDate;
+     private LocalDate dueDate;
+     private Priority priority;
 
-    public enum Estado{
-        EM_PROGRESSO,
-        PENDENTE,
-        CONCLUIDA
+    public enum State{
+        PENDNIG,
+        IN_PROGRESS,
+        FINISHED,
 
     }
 
-    public enum Tipo{
-        ESTUDO,
-        TAREFA,
+    public enum Type{
+        ESTUDAR,
+        TAREFAS,
         TPCS,
         LEITURA,
         OUTRO
-
     }
 
-    public enum Prioridade{
-        NAO_URGENTE,
-        URGENTE,
-        SUPER_URGENTE
-
+    public enum Priority{
+        LOW,
+        MEDIUM,
+        HIGH
     }
 
-    public Task(String titulo, String descricao){
-          this.titulo = titulo;
-          this.descricao = descricao;
-          this.estado = Estado.PENDENTE;
-          this.dataCriacao = LocalDate.now();
+    public Task(String title, String description){
+          this.title = title;
+          this.description = description;
+          this.state = State.IN_PROGRESS;
+          this.creationDate = LocalDate.now();
     }
 
-    public String getTitulo(){
-        return titulo;
+    public String getTitle(){
+        return title;
     }
-    public void setTitulo(String titulo){
-        this.titulo = titulo;
-    }
-
-    public String getDescricao(){
-        return descricao;
-    }
-    public void setDescricao(String descricao){
-        this.descricao = descricao;
+    public void setTitle(String title){
+        this.title = title;
     }
 
-    public Estado getEstado(){
-        return estado;
+    public String getDescription(){
+        return description;
     }
-    public void setEstado(Estado estado){
-        this.estado = estado;
-    }
-
-    public Tipo getTipo(){
-        return tipo;
-    }
-    public void setTipo(Tipo tipo){
-        this.tipo = tipo;
+    public void setDescription(String description){
+        this.description = description;
     }
 
-    public LocalDate getDataCriacao(){
-        return dataCriacao;
+    public State getState(){
+        return state;
+    }
+    public void setState(State state){
+        this.state = state;
     }
 
-    public LocalDate getDataLimite() {
-        return dataLimite;
+    public Type getType(){
+        return type;
+    }
+    public void setType(Type type){
+        this.type = type;
     }
 
-    public void setDataLimite(LocalDate dataLimite) {
-        this.dataLimite = dataLimite;
+    public LocalDate getCreationDate(){
+        return creationDate;
     }
 
-    public Prioridade getPrioridade() {
-        return prioridade;
+    public LocalDate getDueDate() {
+        return dueDate;
+    }
+    public void setDueDate(LocalDate dueDate) {
+        this.dueDate = dueDate;
     }
 
-    public void setPrioridade(Prioridade prioridade) {
-        this.prioridade = prioridade;
+    public Priority getPriority() {
+        return priority;
+    }
+    public void setPriority(Priority priority) {
+        this.priority = priority;
     }
 
     @Override
     public String toString(){
-        return "\nTitulo: " + this.getTitulo()
-         + "\nDescrição: " + this.getDescricao()
-         + "\nData Criação: " + this.getDataCriacao()
-         + "\nData Limite: " + this.getDataLimite()
-         + "\nPrioridade: " + this.getPrioridade()
-         + "\nTipo: " + this.getTipo()
-         + "\nEstado " + this.getEstado()
+        return "\nTitulo: " + this.getTitle()
+         + "\nDescrição: " + this.getDescription()
+         + "\nData Criação: " + this.getCreationDate()
+         + "\nData Limite: " + this.getDueDate()
+         + "\nPrioridade: " + this.getPriority()
+         + "\nTipo: " + this.getType()
+         + "\nEstado: " + this.getState()
          + "\n ";
     }
 }
