@@ -23,7 +23,9 @@ public class Main extends Application {
         TaskManager task = new TaskManager();
         task.loadTestData();
 
-        task.updateState("Estudar Java", Task.State.FINISHED);
+        task.updateState(1, Task.State.FINISHED);
+        task.deleteTask(4);
+
 
         System.out.println("\nAqui estão todas as tarefas: " + task.getAllTasks());
         System.out.println("\nAqui estão todas as tarefas CONCLUIDAS: " + task.getDoneTasks());

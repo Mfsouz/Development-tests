@@ -6,53 +6,56 @@ import java.util.List;
 
 public class TaskManager {
 
-    private List<Task> arrayTask = new ArrayList();
+    private List<Task> arrayTask = new ArrayList<>();
+    private int ID = 1;
 
     ///Metodos Principais
 
-    //Adicionna uma nova tarefa a arrayTask
+    //Adiciona uma nova tarefa a arrayTask
     public void addTask(Task task){
-        arrayTask.add(task);
+            task.setID(ID++);
+            arrayTask.add(task);
     }
 
     //Atualiza os ESTADOS das tarefas
-    public void updateState(String Title, Task.State newState){
-        Task taskSearch = searchTask(Title);
+    public void updateState(int ID, Task.State newState){
+        Task taskSearch = searchTask(ID);
             if(taskSearch != null){
                 taskSearch.setState(newState);
             }else{
-                System.out.println("Nenhuma tarefa com o titulo: " + Title);
+                System.out.println("Nenhuma tarefa com o ID: " + ID);
             }
     }
 
     //Atualiza os TIPOS das tarefas
-    public void updateType(String Title, Task.Type newType){
-        Task taskSearch = searchTask(Title);
+    public void updateType(int ID, Task.Type newType){
+        Task taskSearch = searchTask(ID);
         if(taskSearch != null){
             taskSearch.setType(newType);
         }else{
-            System.out.println("\nNenhuma tarefa com o titulo: " + Title);
+            System.out.println("\nNenhuma tarefa com o ID: " + ID);
         }
     }
 
     //Atualiza as PRIORIDADES das tarefas
-    public void updatePriority(String Title, Task.Priority newPriority){
-        Task taskSearch = searchTask(Title);
+    public void updatePriority(int ID, Task.Priority newPriority){
+        Task taskSearch = searchTask(ID);
         if(taskSearch != null){
             taskSearch.setPriority(newPriority);
         }else{
-            System.out.println("\nNenhuma tarefa com o titulo: " + Title);
+            System.out.println("\nNenhuma tarefa com o ID: " + ID);
         }
     }
 
     //Eliminar a tarefas que o utilizador escolher
-    public void deleteTask(String Title){
-        arrayTask.removeIf(task -> compareStrings(task.getTitle(),Title));
+    public void deleteTask(int ID){
+        arrayTask.removeIf(task -> (task.getID() == ID));
     }
 
     //Eliminar TODAS as tarefas
     public void deleteAllTask(){
         arrayTask.clear();
+        ID = 1;
     }
 
 
@@ -62,8 +65,8 @@ public class TaskManager {
     }
 
     //Vai buscar e listar todas as tarefas que estao com o estado "CONCLUIDA"
-    public ArrayList<Task> getDoneTasks() {
-        ArrayList<Task> doneTasks = new ArrayList<>();
+    public List<Task> getDoneTasks() {
+        List<Task> doneTasks = new ArrayList<>();
 
         for (Task task : arrayTask) {
             if (task.getState() == Task.State.FINISHED) {
@@ -76,17 +79,18 @@ public class TaskManager {
 
     //Dados de teste
     public void loadTestData() {
-        Task task1 = new Task("Estudar Java", "Estudar classes, métodos e objetos");
-        Task task2 = new Task("Fazer trabalho de Matemática", "Resolver os exercícios da ficha");
-        Task task3 = new Task("Ler livro", "Ler 30 páginas do livro");
-        Task task4 = new Task("Fazer exercício", "Treino de peito e costas");
-        Task task5 = new Task("Projeto JavaFX", "Continuar o desenvolvimento do Task Manager");
-
+        Task task1 = new Task(1, "Estudar Java", "Estudar classes, métodos e objetos");
+        Task task2 = new Task(2, "Fazer trabalho de Matemática", "Resolver os exercícios da ficha");
+        Task task3 = new Task(3, "Ler livro", "Ler 30 páginas do livro");
+        Task task4 = new Task(4, "Fazer exercício", "Treino de peito e costas");
+        Task task5 = new Task(5, "Projeto JavaFX", "Continuar o desenvolvimento do Task Manager");
         arrayTask.add(task1);
         arrayTask.add(task2);
         arrayTask.add(task3);
         arrayTask.add(task4);
         arrayTask.add(task5);
+
+        ID = arrayTask.size() + 1;
     }
 
     ///Metodos auxiliares
@@ -105,6 +109,15 @@ public class TaskManager {
     private Task searchTask(String Title) {
         for (Task task : arrayTask) {
             if (compareStrings(task.getTitle(), Title)) {
+                return task;
+            }
+        }
+        return null;
+    }
+
+    private Task searchTask(int ID){
+        for (Task task : arrayTask) {
+            if (task.getID() == ID) {
                 return task;
             }
         }

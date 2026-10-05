@@ -3,7 +3,7 @@ package model;
 import java.time.LocalDate;
 
 public class Task  {
-
+     private int ID;
      private String title;
      private String description;
      private State state;
@@ -13,7 +13,7 @@ public class Task  {
      private Priority priority;
 
     public enum State{
-        PENDNIG,
+        PENDING,
         IN_PROGRESS,
         FINISHED,
 
@@ -33,12 +33,15 @@ public class Task  {
         HIGH
     }
 
-    public Task(String title, String description){
+    public Task(int ID, String title, String description){
+          this.ID = ID;
           this.title = title;
           this.description = description;
           this.state = State.IN_PROGRESS;
           this.creationDate = LocalDate.now();
     }
+    public int getID(){ return ID; }
+    public void setID(int ID){this.ID = ID; }
 
     public String getTitle(){
         return title;
@@ -88,7 +91,8 @@ public class Task  {
 
     @Override
     public String toString(){
-        return "\nTitulo: " + this.getTitle()
+        return "\nID: " + this.getID()
+         +"\nTitulo: " + this.getTitle()
          + "\nDescrição: " + this.getDescription()
          + "\nData Criação: " + this.getCreationDate()
          + "\nData Limite: " + this.getDueDate()
