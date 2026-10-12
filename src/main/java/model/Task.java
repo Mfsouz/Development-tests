@@ -35,6 +35,7 @@ public class Task  {
 
     public Task(int ID, String title, String description){
           this.ID = ID;
+          if(title == null || title.isBlank()){throw new IllegalArgumentException("O Titulo não pode ser vazio");}
           this.title = title;
           this.description = description;
           this.state = State.IN_PROGRESS;
@@ -47,6 +48,7 @@ public class Task  {
         return title;
     }
     public void setTitle(String title){
+        if(title == null || title.isBlank()){throw new IllegalArgumentException("O Titulo não pode ser vazio");}
         this.title = title;
     }
 

@@ -23,7 +23,7 @@ public class TaskManager {
             if(taskSearch != null){
                 taskSearch.setState(newState);
             }else{
-                System.out.println("Nenhuma tarefa com o ID: " + ID);
+                throw new IllegalArgumentException("Nenhuma tarefa encontrada com o ID: " + ID);
             }
     }
 

@@ -22,9 +22,11 @@ public class Main extends Application {
         // launch();
         TaskManager task = new TaskManager();
         task.loadTestData();
-
-        task.updateState(1, Task.State.FINISHED);
-        task.deleteTask(4);
+        try {
+            task.updateState(918263, Task.State.FINISHED);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
 
 
         System.out.println("\nAqui estão todas as tarefas: " + task.getAllTasks());
