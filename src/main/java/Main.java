@@ -29,7 +29,6 @@ public class Main extends Application {
         }
 
 
-        System.out.println("\nAqui estão todas as tarefas: " + task.getAllTasks());
         System.out.println("\nAqui estão todas as tarefas CONCLUIDAS: " + task.getDoneTasks());
     }
 
