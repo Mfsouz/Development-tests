@@ -22,14 +22,23 @@ public class Main extends Application {
         // launch();
         TaskManager task = new TaskManager();
         task.loadTestData();
+
         try {
-            task.updateState(918263, Task.State.FINISHED);
+                task.updatePriority(1, Task.Priority.MEDIUM);
+                task.updatePriority(3, Task.Priority.MEDIUM);
+                task.updatePriority(4, Task.Priority.MEDIUM);
+                task.updateState(1, Task.State.IN_PROGRESS);
+                task.updateState(3, Task.State.IN_PROGRESS);
+                task.updateState(4, Task.State.FINISHED);
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
 
 
-        System.out.println("\nAqui estão todas as tarefas CONCLUIDAS: " + task.getDoneTasks());
+        System.out.println("\nAqui estão todas as tarefas CONCLUIDAS: " + task.getTasksWithSomeState(Task.State.FINISHED).size());
+        System.out.println("\nAqui estão todas as tarefas: " + task.getAllCompleteTasks());
+        System.out.println("\nAqui estão todas as tarefas com prioridade media e em progresso: " + task.getTasksWithSomePriorityAndSomeState(Task.Priority.MEDIUM, Task.State.IN_PROGRESS));
+        System.out.println("\nAqui estão todas as tarefas CONCLUIDAS: " + task.getTasksWithSomeState(Task.State.FINISHED));
     }
 
 

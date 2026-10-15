@@ -41,6 +41,10 @@ public class Task  {
           this.state = State.IN_PROGRESS;
           this.creationDate = LocalDate.now();
     }
+    public Task(String title){
+        this.title = title;
+        this.creationDate = LocalDate.now();
+    }
     public int getID(){ return ID; }
     public void setID(int ID){this.ID = ID; }
 
