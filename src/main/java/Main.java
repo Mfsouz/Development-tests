@@ -3,6 +3,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import model.Task;
+import model.TaskNotFoundException;
 
 public class Main extends Application {
 
@@ -18,27 +19,17 @@ public class Main extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws TaskNotFoundException {
         // launch();
         TaskManager task = new TaskManager();
-        task.loadTestData();
+
 
         try {
-                task.updatePriority(1, Task.Priority.MEDIUM);
-                task.updatePriority(3, Task.Priority.MEDIUM);
-                task.updatePriority(4, Task.Priority.MEDIUM);
-                task.updateState(1, Task.State.IN_PROGRESS);
-                task.updateState(3, Task.State.IN_PROGRESS);
-                task.updateState(4, Task.State.FINISHED);
+            task.loadTestData();
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
-
-
-        System.out.println("\nAqui estão todas as tarefas CONCLUIDAS: " + task.getTasksWithSomeState(Task.State.FINISHED).size());
-        System.out.println("\nAqui estão todas as tarefas: " + task.getAllCompleteTasks());
-        System.out.println("\nAqui estão todas as tarefas com prioridade media e em progresso: " + task.getTasksWithSomePriorityAndSomeState(Task.Priority.MEDIUM, Task.State.IN_PROGRESS));
-        System.out.println("\nAqui estão todas as tarefas CONCLUIDAS: " + task.getTasksWithSomeState(Task.State.FINISHED));
+            task.printTasksTable();
     }
 
 
