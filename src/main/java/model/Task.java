@@ -34,15 +34,18 @@ public class Task  {
     }
 
     public Task(int ID, String title, String description){
-          this.ID = ID;
           if(title == null || title.isBlank()){throw new IllegalArgumentException("O Titulo não pode ser vazio");}
           this.title = title;
+          if(description == null || description.isBlank()){throw new IllegalArgumentException("A descrição não pode ser vazio");}
           this.description = description;
           this.state = State.IN_PROGRESS;
           this.creationDate = LocalDate.now();
     }
-    public Task(String title){
+    public Task(String title, String description){
+        if(title == null || title.isBlank()){throw new IllegalArgumentException("O Titulo não pode ser vazio");}
         this.title = title;
+        if(description == null || description.isBlank()){throw new IllegalArgumentException("A descrição não pode ser vazio");}
+        this.description = description;
         this.creationDate = LocalDate.now();
     }
     public int getID(){ return ID; }

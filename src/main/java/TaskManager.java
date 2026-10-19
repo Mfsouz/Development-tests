@@ -10,6 +10,7 @@ public class TaskManager {
     private List<Task> arrayTask = new ArrayList<>();
     private int ID = 1;
 
+
     ///Metodos Principais
 
     //Adiciona uma nova tarefa a arrayTask
@@ -111,17 +112,26 @@ public class TaskManager {
         int descriptionSize = descriptionMinMaxLenght();
 
         System.out.printf("| %-4s | %-" + titleSize + "s | %-" + descriptionSize + "s | %-15s | %-15s | %-15s | %-15s |%n",
-                          "ID", "Titulo", "Descrição", "Estado", "Tipo", "Prioridade", "Data de Criação");
+                          centerText("ID",4),
+                          centerText("Titulo", titleSize),
+                          centerText("Descrição",descriptionSize),
+                          centerText("Estado",15),
+                          centerText("Tipo",15),
+                          centerText("Prioridade",15),
+                          centerText("Data de Criação",15));
 
         for (Task task : arrayTask) {
-            System.out.printf("| %-4d | %-" + titleSize + "s | %-" + descriptionSize+ "s | %-15s | %-15s | %-15s | %-15s |%n",
-                                (task.getID()),
-                                formatCell(task.getTitle(), titleSize),
-                                formatCell(task.getDescription(), descriptionSize),
-                                formatValues(task.getState()),
-                                formatValues(task.getType()),
-                                formatValues(task.getPriority()),
-                                formatValues(task.getCreationDate()));
+            System.out.printf(
+                    "| %-4s | %" + titleSize + "s | %" + descriptionSize +
+                            "s | %15s | %15s | %15s | %15s |%n",
+                    centerText(String.valueOf(task.getID()), 4),
+                    centerText(task.getTitle(), titleSize),
+                    centerText(task.getDescription(), descriptionSize),
+                    centerText(formatValues(task.getState()), 15),
+                    centerText(formatValues(task.getType()), 15),
+                    centerText(formatValues(task.getPriority()), 15),
+                    centerText(formatValues(task.getCreationDate()), 15)
+            );
         }
     }
 
@@ -200,18 +210,26 @@ public class TaskManager {
         return descriptionWidth;
     }
 
-    private String formatCell(String text, int width) {
-
+    private String centerText(String text, int width) {
         if (text == null || text.isBlank()) {
             text = "N/A";
         }
+
         if (text.length() > width) {
-            return text.substring(0, width - 3) + "...";
+            text = text.substring(0, width - 3) + "...";
         }
-        return text;
+
+        int spaces = width - text.length();
+        int leftSpaces = spaces / 2;
+        int rightSpaces = spaces - leftSpaces;
+
+        return " ".repeat(leftSpaces) + text + " ".repeat(rightSpaces);
     }
 
     private String formatValues(Object value){
         return value == null ? "N/A" : value.toString();
     }
 }
+
+
+
