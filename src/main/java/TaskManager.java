@@ -29,15 +29,6 @@ public class TaskManager {
             }
     }
 
-    //Atualiza os TIPOS das tarefas
-    public void updateType(int ID, Task.Type newType) throws TaskNotFoundException {
-        Task taskSearch = searchTask(ID);
-        if(taskSearch != null){
-            taskSearch.setType(newType);
-        }else{
-            throw new TaskNotFoundException("Nenhuma tarefa com o ID: " + ID);
-        }
-    }
     //Atualiza os TITULOS das tarefas
     public void updateTitle(int ID, String newTitle) throws TaskNotFoundException {
         Task taskSearch = searchTask(ID);
@@ -111,24 +102,22 @@ public class TaskManager {
         int titleSize = titleMinMaxLenght();
         int descriptionSize = descriptionMinMaxLenght();
 
-        System.out.printf("| %-4s | %-" + titleSize + "s | %-" + descriptionSize + "s | %-15s | %-15s | %-15s | %-15s |%n",
+        System.out.printf("| %-4s | %-" + titleSize + "s | %-" + descriptionSize + "s | %-15s | %-15s | %-15s |%n",
                           centerText("ID",4),
                           centerText("Titulo", titleSize),
                           centerText("Descrição",descriptionSize),
                           centerText("Estado",15),
-                          centerText("Tipo",15),
                           centerText("Prioridade",15),
                           centerText("Data de Criação",15));
 
         for (Task task : arrayTask) {
             System.out.printf(
                     "| %-4s | %" + titleSize + "s | %" + descriptionSize +
-                            "s | %15s | %15s | %15s | %15s |%n",
+                            "s | %15s | %15s | %15s |%n",
                     centerText(String.valueOf(task.getID()), 4),
                     centerText(task.getTitle(), titleSize),
                     centerText(task.getDescription(), descriptionSize),
                     centerText(formatValues(task.getState()), 15),
-                    centerText(formatValues(task.getType()), 15),
                     centerText(formatValues(task.getPriority()), 15),
                     centerText(formatValues(task.getCreationDate()), 15)
             );

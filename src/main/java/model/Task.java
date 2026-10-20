@@ -7,7 +7,6 @@ public class Task  {
      private String title;
      private String description;
      private State state;
-     private Type type;
      final private LocalDate creationDate;
      private LocalDate dueDate;
      private Priority priority;
@@ -17,14 +16,6 @@ public class Task  {
         IN_PROGRESS,
         FINISHED,
 
-    }
-
-    public enum Type{
-        ESTUDAR,
-        TAREFAS,
-        TPCS,
-        LEITURA,
-        OUTRO
     }
 
     public enum Priority{
@@ -73,13 +64,6 @@ public class Task  {
         this.state = state;
     }
 
-    public Type getType(){
-        return type;
-    }
-    public void setType(Type type){
-        this.type = type;
-    }
-
     public LocalDate getCreationDate(){
         return creationDate;
     }
@@ -106,7 +90,6 @@ public class Task  {
          + "\nData Criação: " + this.getCreationDate()
          + "\nData Limite: " + this.getDueDate()
          + "\nPrioridade: " + this.getPriority()
-         + "\nTipo: " + this.getType()
          + "\nEstado: " + this.getState()
          + "\n ";
     }
